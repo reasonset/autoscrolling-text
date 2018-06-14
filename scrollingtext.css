@@ -1,0 +1,12 @@
+body {
+ color: #f99;
+ -webkit-text-stroke-width: 1px;
+ -webkit-text-stroke-color: #f66;
+ font-size: 20pt;
+ background-color: #fff;
+ font-family: "HCP Maru Gothic", "Migu 1C", "VL PGothic", "源ノ角ゴシック JP", "Meiryo", sans-serif;
+ font-weight: 300;
+}
+.line-block {
+  white-space: pre-wrap;
+}
