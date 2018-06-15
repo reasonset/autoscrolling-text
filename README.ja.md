@@ -10,9 +10,9 @@
 
 ## 依存
 
-* Pandoc
 * Zsh
-* Surf (Surf利用時)
+* Pandoc (Markup mode利用時)
+* Surf (デフォルトブラウザ利用時)
 * Python (UnSurf利用時)
 * PyQt5 (UnSurf利用時)
 * python-opengl (UnSurf利用時)

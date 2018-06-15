@@ -43,23 +43,33 @@ fi
 
 typeset sourcefile="$1"
 
-#Generate script loader
-cat <<EOF > $add_header_file
-<script src="file://${XDG_CONFIG_HOME:-$HOME/.config}/autoscroll-text/scrollingtext.js"></script>
-EOF
-
-
 ######## GENERATE #########
 
 if (( markdown_mode == 1 ))
 then
+  #Generate script loader
+  cat <<EOF > $add_header_file
+  <script src="file://${XDG_CONFIG_HOME:-$HOME/.config}/autoscroll-text/scrollingtext.js"></script>
+EOF
   # Markdown mode
-  pandoc -t html5 -s -c "file://"${XDG_CONFIG_HOME:-$HOME/.config}/autoscroll-text/autoscroll-text.css -H $add_header_file $sourcefile > $rendered_file
+  pandoc -t html5 -s -c "file://"${XDG_CONFIG_HOME:-$HOME/.config}/autoscroll-text/scrollingtext.css -H $add_header_file $sourcefile > $rendered_file
+  rm $add_header_file
 else
-  # Plainmode
-  typeset temporary_markdown_file="/tmp/$$-autoscroll-text.md"
-  sed -e 's/^/| /' -e 's/[<>]/\\&/g' $sourcefile > $temporary_markdown_file # Convert all to line-blocks
-  pandoc -t html5 -M "title=${sourcefile:t}" -s -c "file://"${XDG_CONFIG_HOME:-$HOME/.config}/autoscroll-text/scrollingtext.css -H $add_header_file $temporary_markdown_file > $rendered_file
+  # Plain mode
+
+  cat > $rendered_file <<EOF
+<html>
+  <head>
+    <title> - Auto-scrolling Text</title>
+    <link rel="stylesheet" href="file://${XDG_CONFIG_HOME:-$HOME/.config}/autoscroll-text/scrollingtext.css" />
+  </head>
+  <body>
+    <article><pre class="line-block" style="white-space:pre-wrap;">$(sed -e 's/</&lt;/g' -e 's/>/&gt;/g' $sourcefile)</pre></article>
+    <script src="file://${XDG_CONFIG_HOME:-$HOME/.config}/autoscroll-text/scrollingtext.js"></script>
+  </body>
+</html>
+EOF
+
 fi
 
 ######## Render ############
@@ -81,5 +91,4 @@ then
 fi
 
 #Remove temporary file
-[[ -n $temporary_markdown_file ]] && [[ -e $temporary_markdown_file ]] && rm $temporary_markdown_file
-rm $rendered_file $add_header_file
+rm $rendered_file

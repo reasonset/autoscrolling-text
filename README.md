@@ -10,9 +10,9 @@ Use Surf for viewing by default.
 
 ## Dependency
 
-* Pandoc
 * Zsh
-* Surf (for Surf)
+* Pandoc (for Markup mode)
+* Surf (for Default viewer)
 * Python (for UnSurf)
 * PyQt5 (for UnSurf)
 * python-opengl (for UnSurf)
