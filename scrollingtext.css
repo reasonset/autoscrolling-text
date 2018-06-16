@@ -1,12 +1,52 @@
 body {
- color: #f99;
- -webkit-text-stroke-width: 1px;
- -webkit-text-stroke-color: #f66;
- font-size: 20pt;
- background-color: #fff;
- font-family: "HCP Maru Gothic", "Migu 1C", "VL PGothic", "源ノ角ゴシック JP", "Meiryo", sans-serif;
- font-weight: 300;
+	font-size: 20pt;
+	font-family: serif;
 }
+
+body.default {
+	color: #666;
+	background-color: #e0e0e0;
+}
+
+body.pinkCat {
+	color: #f99;
+	font-weight: 300;
+	font-family: "HCP Maru Gothic", "Migu 1C", "VL PGothic", "源ノ角ゴシック JP", "Meiryo", sans-serif;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #f66;
+	background-color: #fff;
+}
+
+body.babyBlue {
+	color: #9cf;
+	font-weight: 300;
+	font-family: "HCP Maru Gothic", "Migu 1C", "VL PGothic", "源ノ角ゴシック JP", "Meiryo", sans-serif;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #39f;
+	background-color: #fff;
+}
+
+body.breezeDark {
+	background-color: #31363b;
+	color: #cfcfc2;
+}
+
+body.solarizedLight {
+	background-color: #eee8d5;
+	color: #839496;
+}
+
+body.solarizedDark {
+	background-color: #073642;
+	color: #839496;
+}
+
+body.vimDark {
+	background-color: #000000;
+	color: #b2b2b2;
+}
+
+
 .line-block {
-  white-space: pre-wrap;
+	white-space: pre-wrap;
 }

@@ -21,13 +21,24 @@
 ## 使い方
 
 ```bash
-autoscroll-text [-m] [-b browser_command] sourcefile
+autoscroll-text [-m] [-b browser_command] [-c class] sourcefile
 ```
 
 `$autoscroll_text_overide_browser` という環境変数を `-b` オプションの代わりに利用することもできる。
 指定しなければ`surf`が使われる。
 
 `-m` オプションをつけるとsourcefileは通常のテキストではなくPandocが理解できる形式(MarkdownやReStructured Textなど)だとみなす。
+
+`-c` オプションを使用すると `body` タグの `class` として class を使用する。
+標準のスタイルシートには次のclassが用意されている。
+
+* default
+* pinkCat
+* babyBlue
+* breezeDark
+* solarizedLight
+* solarizedDark
+* vimDark
 
 ## キー設定
 

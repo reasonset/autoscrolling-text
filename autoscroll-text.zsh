@@ -4,6 +4,8 @@ typeset SCRIPT_VERSION="0.0.1"
 
 typeset rendered_file="/tmp/$$-autoscroll-text.html"
 typeset add_header_file="/tmp/$$-autoscroll-text-header.html"
+typeset pandoc_template_file="/tmp/$$-autoscroll-text-template.html"
+typeset bodyclass="default"
 
 typeset -i markdown_mode=0
 
@@ -12,7 +14,7 @@ usage() {
     exit 1
 }
 
-while getopts "mhvb:" opt
+while getopts "mhvb:c:" opt
 do
   case $opt in
   m)
@@ -27,8 +29,15 @@ do
     print "This program licensed under MIT License."
     exit
     ;;
+  c)
+    if [[ $OPTARG == *[/\"\&\<\>]* ]]
+    then
+      print "You cannot use /, &, <, > or \" for classname."
+      exit 1
+    fi
+    typeset bodyclass="$OPTARG"
+    ;;
   b)
-    print "COME"
     typeset autoscroll_text_overide_browser="$OPTARG"
     ;;
   esac
@@ -51,20 +60,23 @@ then
   cat <<EOF > $add_header_file
   <script src="file://${XDG_CONFIG_HOME:-$HOME/.config}/autoscroll-text/scrollingtext.js"></script>
 EOF
+
+  # Generate template
+  pandoc -D html5 | sed 's/<body>/<body class="$bodyclass$">/' > $pandoc_template_file
   # Markdown mode
-  pandoc -t html5 -s -c "file://"${XDG_CONFIG_HOME:-$HOME/.config}/autoscroll-text/scrollingtext.css -H $add_header_file $sourcefile > $rendered_file
-  rm $add_header_file
+  pandoc -t html5 -s -c "file://"${XDG_CONFIG_HOME:-$HOME/.config}/autoscroll-text/scrollingtext.css -M "bodyclass=${bodyclass}" -H $add_header_file --template="$pandoc_template_file" $sourcefile > $rendered_file
+  rm $add_header_file $pandoc_template_file
 else
   # Plain mode
 
   cat > $rendered_file <<EOF
 <html>
   <head>
-    <title> - Auto-scrolling Text</title>
+    <title>${sourcefile:t} Auto-scrolling Text</title>
     <link rel="stylesheet" href="file://${XDG_CONFIG_HOME:-$HOME/.config}/autoscroll-text/scrollingtext.css" />
   </head>
-  <body>
-    <article><pre class="line-block" style="white-space:pre-wrap;">$(sed -e 's/</&lt;/g' -e 's/>/&gt;/g' $sourcefile)</pre></article>
+  <body class="${bodyclass}">
+    <article><pre class="line-block" style="white-space:pre-wrap;">$(sed 's/&/&amp;/g' $sourcefile | sed -e 's/</&lt;/g' -e 's/>/&gt;/g')</pre></article>
     <script src="file://${XDG_CONFIG_HOME:-$HOME/.config}/autoscroll-text/scrollingtext.js"></script>
   </body>
 </html>

@@ -11,8 +11,8 @@ if (argc != 2):
     print("Usage:\n  webview.py addr")
     quit()
 
-app = QtGui.QGuiApplication(["Qt Webview", "Hello"])
+app = QtGui.QGuiApplication(["Qt Webview"])
 engine = QtQml.QQmlApplicationEngine()
-engine.load("{home}/lib/unsurf/unsurf.qml".format(home=os.environ["HOME"]))
 engine.rootContext().setContextProperty("myUrl", argv[1])
+engine.load("{home}/lib/unsurf/unsurf.qml".format(home=os.environ["HOME"]))
 app.exec_()

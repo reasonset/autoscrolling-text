@@ -21,7 +21,7 @@ Use Surf for viewing by default.
 ## Usage
 
 ```bash
-autoscroll-text [-m] [-b browser_command] sourcefile
+autoscroll-text [-m] [-b browser_command] [-c class] sourcefile
 ```
 
 You can use `$autoscroll_text_overide_browser` environment paramater instead of `-b` option.
@@ -29,6 +29,17 @@ You can use `$autoscroll_text_overide_browser` environment paramater instead of 
 `surf` is used by default.
 
 If you use `-m` option, sourcefile is treated as Pandoc's input format (e.g. Markdown).
+
+`-c` option is set class to `class` on `body`.
+These classes are avilable in default stylesheet.
+
+* default
+* pinkCat
+* babyBlue
+* breezeDark
+* solarizedLight
+* solarizedDark
+* vimDark
 
 ## Shortcut keys
 
