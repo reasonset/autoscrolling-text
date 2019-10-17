@@ -25,6 +25,7 @@ else:
 
 app = QApplication([])
 
+
 # Choice application icon. I don't know smart way for choice generic web browser icon.
 for iconpath in ["Papirus/64x64/apps/redhat-web-browser.svg", "Vibrancy-Colors/apps/96/browser.png", "Papirus/64x64/apps/internet-web-browser.svg", "breeze/apps/48/plasma-browser-integration.svg", "breeze/apps/48/internet-web-browser.svg", "Adwaita/scalable/apps/web-browser-symbolic.svg", "gnome/256x256/apps/web-browser.png", "ePapirus/22x22/actions/web-browser.svg", "AwOken/clear/128x128/apps/browser.png", "andromeda/apps/48/internet-web-browser.svg"]:
     if os.path.exists("/usr/share/icons/" + iconpath):
@@ -32,6 +33,7 @@ for iconpath in ["Papirus/64x64/apps/redhat-web-browser.svg", "Vibrancy-Colors/a
         break
 
 web = QWebEngineView()
+web.setWindowTitle("Unsruf Quick WebBrowser")
 web.load(QUrl(url))
 web.show()
 
