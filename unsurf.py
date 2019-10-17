@@ -1,18 +1,19 @@
 #!/usr/bin/python
 import sys
-import os
-from PyQt5 import QtGui, QtQml
-from OpenGL import GL  #Linux workaround.  See: http://goo.gl/s0SkFl
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWebEngineWidgets import *
 
 argv = sys.argv
 argc = len(argv)
 
 if (argc != 2):
-    print("Usage:\n  webview.py addr")
+    print("Usage:\n unsurf.py addr")
     quit()
 
-app = QtGui.QGuiApplication(["Qt Webview"])
-engine = QtQml.QQmlApplicationEngine()
-engine.rootContext().setContextProperty("myUrl", argv[1])
-engine.load("{home}/lib/unsurf/unsurf.qml".format(home=os.environ["HOME"]))
-app.exec_()
+app = QApplication([])
+web = QWebEngineView()
+web.load(QUrl(argv[1]))
+web.show()
+
+sys.exit(app.exec_())

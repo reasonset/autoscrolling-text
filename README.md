@@ -15,7 +15,7 @@ Use Surf for viewing by default.
 * Surf (for Default viewer)
 * Python (for UnSurf)
 * PyQt5 (for UnSurf)
-* python-opengl (for UnSurf)
+* Python QtWebEngine (for UnSurf)
 * mpv (for BGM)
 
 ## Usage
@@ -41,6 +41,8 @@ These classes are avilable in default stylesheet.
 * solarizedDark
 * vimDark
 
+If `-p` option is set, browser is invoked without `file://` scheme prefix.
+
 ## Shortcut keys
 
 |Key / Button|Behavior|
@@ -61,7 +63,7 @@ If `BGM` directory is exists under the directory, script plays it with mpv.
 
 ## Install
 
-You can install with install script (UnSurf too.)
+You can install with install script.
 
 This script will be installed for user.
 Script file will be put under `~/bin` .
@@ -70,7 +72,7 @@ Script file will be put under `~/bin` .
 
 ## Description
 
-Ultimate simple webbrowser with qtwebengine.
+Ultimate simple webbrowser with QWebEngineView.
 
 You can use this program if you don't use Surf.
 
@@ -79,3 +81,7 @@ You can use this program if you don't use Surf.
 ```bash
 unsurf.py url
 ```
+
+## Install
+
+Put `unsurf.py` on PATH.

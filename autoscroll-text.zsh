@@ -3,11 +3,13 @@
 typeset SCRIPT_VERSION="0.0.1"
 
 typeset rendered_file="/tmp/$$-autoscroll-text.html"
+typeset url="$rendered_file"
 typeset add_header_file="/tmp/$$-autoscroll-text-header.html"
 typeset pandoc_template_file="/tmp/$$-autoscroll-text-template.html"
 typeset bodyclass="default"
 
 typeset -i markdown_mode=0
+typeset -i barepath_mode=0
 
 usage() {
     print "Usage: $0 [-m] sourcefile" >&2
@@ -40,6 +42,9 @@ do
   b)
     typeset autoscroll_text_overide_browser="$OPTARG"
     ;;
+  p)
+    barepath_mode=1
+    ;;
   esac
 done
 
@@ -48,6 +53,11 @@ shift $((OPTIND - 1))
 if [[ -z $1 ]]
 then
   usage
+fi
+
+if (( barepath_mode != 1 ))
+then
+  url="file://$rendered_file"
 fi
 
 typeset sourcefile="$1"
@@ -94,7 +104,7 @@ then
 fi
 
 #SHOW
-${autoscroll_text_overide_browser:-surf} $rendered_file
+${autoscroll_text_overide_browser:-surf} $url
 
 #Stop BGM
 if [[ -n $bgmpid ]]

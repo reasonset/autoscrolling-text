@@ -15,7 +15,7 @@
 * Surf (デフォルトブラウザ利用時)
 * Python (UnSurf利用時)
 * PyQt5 (UnSurf利用時)
-* python-opengl (UnSurf利用時)
+* Python QtWebEngine (UnSurf利用時)
 * mpv (BGM再生時)
 
 ## 使い方
@@ -40,6 +40,8 @@ autoscroll-text [-m] [-b browser_command] [-c class] sourcefile
 * solarizedDark
 * vimDark
 
+`-p` オプションはブラウザに渡すアドレスに`file://` というスキームをつけずに起動する。
+
 ## キー設定
 
 |キー|動作|
@@ -60,7 +62,7 @@ autoscroll-text [-m] [-b browser_command] [-c class] sourcefile
 
 ## インストール
 
-UnSurfとともにそれぞれインストールスクリプトを実行すればインストールされるが、ユーザー単位で実行されることを前提としている。
+インストールスクリプトを実行すればインストールされるが、ユーザー単位で実行されることを前提としている。
 
 実行ファイルは `~/bin` 以下に配置される。
 
@@ -70,10 +72,14 @@ UnSurfとともにそれぞれインストールスクリプトを実行すれ�
 
 Surfをインストールしたくない、あるいはインストールできない人のためのブラウザである。
 
-ごく単純にQtwebengineを用いてページを表示する。
+ごく単純にQWebEngineViewを用いてページを表示する。
 
 ## 使い方
 
 ```bash
 unsurf.py url
 ```
+
+## インストール
+
+実行可能なディレクトリに`unsurf.py`をコピーする。
